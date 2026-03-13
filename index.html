@@ -1,218 +1,297 @@
-import React, { useState } from 'react';
-import { Shield, Zap, Server, ChevronRight, Menu, X, CheckCircle2, BarChart, Lock, Phone } from 'lucide-react';
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gutierre - Soluções em Tecnologia IT</title>
+    
+    <!-- Tailwind CSS (via CDN para manter em um único arquivo) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Configuração de Cores Baseada no seu Logotipo -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#0B1E36',   /* Azul Escuro Extraído da Logo */
+                            orange: '#F05A22', /* Laranja Extraído da Logo */
+                            light: '#F8FAFC',
+                            gray: '#475569'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
 
-export default function App() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+    <!-- Ícones (Feather Icons CDN) -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    
+    <!-- Fonte Google: Inter para legibilidade corporativa -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        /* Suavização de renderização */
+        * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    </style>
+</head>
+<body class="bg-brand-light text-slate-900 flex flex-col min-h-screen">
 
-  return (
-    // Transição para um Light Mode sofisticado e corporativo
-    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-orange-500 selection:text-white relative overflow-hidden">
-      
-      {/* Padrão de fundo sutil (Grid tecnológico) para não deixar o branco chapado */}
-      <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none" 
-           style={{ backgroundImage: 'radial-gradient(#0f172a 1px, transparent 1px)', backgroundSize: '24px 24px' }}>
-      </div>
+    <!-- NAVEGAÇÃO: Fundo branco, logo em destaque elegante -->
+    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-24">
+                
+                <!-- DESTAQUE DO LOGOTIPO: Tamanho imponente mas não intrusivo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <img src="https://i.ibb.co/FYbTjYG/Gutierre-fw.png" alt="Gutierre Soluções em Tecnologia IT" class="h-16 md:h-20 w-auto object-contain transition-transform hover:scale-105 drop-shadow-sm">
+                </div>
+                
+                <!-- Menu Desktop -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#desafios" class="text-slate-600 hover:text-brand-blue font-semibold transition-colors">Desafios</a>
+                    <a href="#solucoes" class="text-slate-600 hover:text-brand-blue font-semibold transition-colors">As Nossas Soluções</a>
+                    <a href="#contato" class="bg-brand-orange hover:bg-orange-700 text-white px-6 py-3 rounded-lg font-bold transition-all transform hover:-translate-y-0.5 shadow-lg shadow-brand-orange/30">
+                        Falar com Especialista
+                    </a>
+                </div>
 
-      {/* Navegação - Clean, Fundo Branco com leve sombra */}
-      <nav className="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-24">
-            
-            {/* O SEU LOGOTIPO EM DESTAQUE NATURAL NO FUNDO BRANCO */}
-            <div className="flex-shrink-0 flex items-center">
-              <img 
-                src="https://i.ibb.co/FYbTjYG/Gutierre-fw.png" 
-                alt="Gutierre Soluções em Tecnologia IT" 
-                className="h-16 w-auto object-contain transition-transform hover:scale-105"
-              />
+                <!-- Botão Menu Mobile -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-brand-blue hover:text-brand-orange transition-colors">
+                        <i data-feather="menu" class="w-8 h-8"></i>
+                    </button>
+                </div>
             </div>
-            
-            {/* Menu Desktop */}
-            <div className="hidden md:flex items-center space-x-8">
-              <a href="#solucoes" className="text-slate-600 hover:text-blue-900 transition-colors text-sm font-semibold">Soluções</a>
-              <a href="#problema" className="text-slate-600 hover:text-blue-900 transition-colors text-sm font-semibold">Desafios</a>
-              <button className="bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-lg font-bold transition-all transform hover:-translate-y-0.5 shadow-lg shadow-orange-600/30">
-                Falar com Especialista
-              </button>
-            </div>
-
-            {/* Botão Menu Mobile */}
-            <div className="md:hidden flex items-center">
-              <button 
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="text-slate-900 hover:text-orange-600 transition-colors"
-              >
-                {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
-              </button>
-            </div>
-          </div>
         </div>
 
-        {/* Menu Mobile */}
-        {isMenuOpen && (
-          <div className="md:hidden bg-white border-b border-slate-200 shadow-lg">
-            <div className="px-4 pt-2 pb-6 space-y-2">
-              <a href="#solucoes" className="block px-3 py-3 text-base font-semibold text-slate-700 hover:text-blue-900 hover:bg-slate-50 rounded-md">Soluções Específicas</a>
-              <a href="#problema" className="block px-3 py-3 text-base font-semibold text-slate-700 hover:text-blue-900 hover:bg-slate-50 rounded-md">Desafios Comuns</a>
-              <button className="w-full mt-4 bg-orange-600 text-white px-4 py-3 rounded-md font-bold text-center shadow-md">
-                Falar com Especialista
-              </button>
+        <!-- Menu Mobile (Oculto por padrão) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 shadow-xl absolute w-full">
+            <div class="px-4 pt-2 pb-6 space-y-3">
+                <a href="#desafios" class="block px-3 py-3 text-base font-semibold text-brand-blue hover:bg-slate-50 rounded-md">Desafios Comuns</a>
+                <a href="#solucoes" class="block px-3 py-3 text-base font-semibold text-brand-blue hover:bg-slate-50 rounded-md">As Nossas Soluções</a>
+                <a href="#contato" class="block w-full mt-4 bg-brand-orange text-white px-4 py-4 rounded-md font-bold text-center shadow-md">
+                    Falar com Especialista
+                </a>
             </div>
-          </div>
-        )}
-      </nav>
-
-      {/* Hero Section - Foco na Clareza e Autoridade */}
-      <section className="relative pt-36 pb-20 lg:pt-48 lg:pb-32 z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative text-center flex flex-col items-center">
-          
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-blue-800 text-sm font-bold mb-8 shadow-sm">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-600"></span>
-            </span>
-            Parceiro Estratégico de TI B2B
-          </div>
-          
-          <h1 className="text-4xl md:text-5xl lg:text-7xl font-extrabold tracking-tight mb-6 text-slate-900 leading-[1.1]">
-            A sua TI deve ser um <span className="text-blue-900">motor de lucro</span>,<br className="hidden md:block" /> 
-            não uma fonte de custos ocultos.
-          </h1>
-          
-          <p className="mt-6 text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed font-medium">
-            Eliminamos falhas de sistema, blindamos os seus dados corporativos e garantimos uma operação tecnológica de alta disponibilidade.
-          </p>
-          
-          <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center w-full max-w-md mx-auto sm:max-w-none">
-            <button className="flex items-center justify-center gap-2 bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-lg shadow-orange-600/30 transform hover:-translate-y-1">
-              Agendar Diagnóstico Gratuito
-              <ChevronRight size={20} />
-            </button>
-            <button className="flex items-center justify-center gap-2 bg-white hover:bg-slate-50 border-2 border-slate-200 text-slate-700 px-8 py-4 rounded-xl font-bold text-lg transition-all hover:border-slate-300">
-              Ver Metodologia
-            </button>
-          </div>
         </div>
-      </section>
+    </nav>
 
-      {/* Seção de Dores - Cards Claros e Elegantes */}
-      <section className="py-24 relative z-10 bg-white border-y border-slate-200" id="problema">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl font-extrabold text-slate-900 mb-4">A verdadeira causa da ineficiência tecnológica</h2>
-            <p className="text-lg text-slate-600">Se a sua operação enfrenta estes cenários, a sua infraestrutura atual representa um risco financeiro crítico.</p>
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-slate-50 p-8 rounded-2xl border border-slate-200 hover:border-blue-300 hover:shadow-xl transition-all duration-300 group">
-              <div className="w-14 h-14 bg-white rounded-xl flex items-center justify-center mb-6 text-red-600 shadow-sm border border-slate-100 group-hover:scale-110 transition-transform">
-                <BarChart size={28} />
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">Lentidão Sistêmica</h3>
-              <p className="text-slate-600 leading-relaxed">
-                Sistemas lentos durante picos de faturamento destroem a produtividade. Qual é o custo real da sua equipe parada durante 1 hora?
-              </p>
+    <!-- HERO SECTION: Onde a conversão realmente acontece -->
+    <section class="relative pt-40 pb-20 lg:pt-52 lg:pb-32 overflow-hidden bg-white">
+        <!-- Elemento visual abstrato usando a paleta do logo sutilmente -->
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-brand-blue opacity-[0.03] blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-brand-orange opacity-[0.05] blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative text-center flex flex-col items-center">
+            
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-100 border border-slate-200 text-brand-blue text-sm font-bold mb-8 shadow-sm">
+                <span class="relative flex h-2.5 w-2.5">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-orange opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand-orange"></span>
+                </span>
+                Auditoria B2B Disponível
             </div>
             
-            <div className="bg-slate-50 p-8 rounded-2xl border border-slate-200 hover:border-blue-300 hover:shadow-xl transition-all duration-300 group">
-              <div className="w-14 h-14 bg-white rounded-xl flex items-center justify-center mb-6 text-orange-600 shadow-sm border border-slate-100 group-hover:scale-110 transition-transform">
-                <Lock size={28} />
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">Vulnerabilidade de Dados</h3>
-              <p className="text-slate-600 leading-relaxed">
-                Ataques de Ransomware atingem PMEs diariamente. A ausência de políticas de segurança estruturadas é a porta de entrada mais fácil.
-              </p>
+            <h1 class="text-4xl md:text-5xl lg:text-7xl font-extrabold tracking-tight mb-6 text-brand-blue leading-[1.15]">
+                A sua TI deve ser um motor de lucro,<br class="hidden md:block" /> 
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-orange to-orange-500">
+                    não uma fonte de custos ocultos.
+                </span>
+            </h1>
+            
+            <p class="mt-6 text-xl text-brand-gray max-w-2xl mx-auto leading-relaxed font-medium">
+                Eliminamos falhas sistêmicas, blindamos os seus dados corporativos contra sequestros e garantimos uma operação ininterrupta.
+            </p>
+            
+            <div class="mt-12 flex flex-col sm:flex-row gap-4 justify-center w-full max-w-md mx-auto sm:max-w-none">
+                <a href="#contato" class="flex items-center justify-center gap-2 bg-brand-orange hover:bg-orange-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-xl shadow-brand-orange/30 transform hover:-translate-y-1">
+                    Agendar Diagnóstico Gratuito
+                    <i data-feather="chevron-right" class="w-5 h-5"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO DE DORES (Problemas que o cliente tem) -->
+    <section id="desafios" class="py-24 bg-brand-light border-y border-slate-200 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-brand-blue mb-4">A verdadeira causa da sua ineficiência</h2>
+                <p class="text-lg text-brand-gray">Se a sua operação enfrenta estes cenários, a sua infraestrutura atual é um risco, não um ativo.</p>
             </div>
             
-            <div className="bg-slate-50 p-8 rounded-2xl border border-slate-200 hover:border-blue-300 hover:shadow-xl transition-all duration-300 group">
-              <div className="w-14 h-14 bg-white rounded-xl flex items-center justify-center mb-6 text-blue-600 shadow-sm border border-slate-100 group-hover:scale-110 transition-transform">
-                <Phone size={28} />
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">Suporte Reativo</h3>
-              <p className="text-slate-600 leading-relaxed">
-                Contatar a TI apenas quando algo quebra gera stress contínuo e impede o planejamento estratégico de crescimento da sua empresa.
-              </p>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-white p-8 rounded-2xl border border-slate-200 hover:border-brand-orange/50 hover:shadow-xl transition-all duration-300 group">
+                    <div class="w-14 h-14 bg-red-50 text-red-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-feather="trending-down" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-blue mb-3">Lentidão que Custa Caro</h3>
+                    <p class="text-brand-gray leading-relaxed">
+                        Sistemas lentos durante picos de faturamento destroem a produtividade. Qual é o custo real da sua equipe parada durante 1 hora?
+                    </p>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="bg-white p-8 rounded-2xl border border-slate-200 hover:border-brand-orange/50 hover:shadow-xl transition-all duration-300 group">
+                    <div class="w-14 h-14 bg-orange-50 text-brand-orange rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-feather="unlock" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-blue mb-3">Vulnerabilidade Silenciosa</h3>
+                    <p class="text-brand-gray leading-relaxed">
+                        Ataques de Ransomware atingem PMEs diariamente. A ausência de políticas de segurança estruturadas é a porta de entrada mais fácil.
+                    </p>
+                </div>
+                
+                <!-- Card 3 -->
+                <div class="bg-white p-8 rounded-2xl border border-slate-200 hover:border-brand-orange/50 hover:shadow-xl transition-all duration-300 group">
+                    <div class="w-14 h-14 bg-blue-50 text-brand-blue rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-feather="clock" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-blue mb-3">Suporte Reativo</h3>
+                    <p class="text-brand-gray leading-relaxed">
+                        Contatar a TI apenas quando algo quebra gera stress contínuo e impede o planejamento estratégico de crescimento da sua empresa.
+                    </p>
+                </div>
             </div>
-          </div>
         </div>
-      </section>
+    </section>
 
-      {/* Seção de Soluções */}
-      <section className="py-24 relative z-10" id="solucoes">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-16">
-            <div className="max-w-2xl">
-              <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">A Engenharia Gutierre</h2>
-              <p className="text-slate-600 text-lg">
-                Projetamos, implementamos e monitoramos infraestruturas robustas para empresas que não podem parar.
-              </p>
-            </div>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl transition-all group">
-              <Shield size={32} className="text-blue-900 mb-6 group-hover:-translate-y-1 transition-transform" />
-              <h3 className="text-xl font-bold text-slate-900 mb-3">Cibersegurança Avançada</h3>
-              <p className="text-slate-600 mb-6">Firewalls corporativos, backup imutável e proteção ativa contra invasões 24/7.</p>
-              <ul className="space-y-3">
-                <li className="flex items-center text-sm text-slate-700 font-medium"><CheckCircle2 size={16} className="mr-2 text-orange-600" /> Auditoria de Risco</li>
-                <li className="flex items-center text-sm text-slate-700 font-medium"><CheckCircle2 size={16} className="mr-2 text-orange-600" /> Disaster Recovery</li>
-              </ul>
+    <!-- SEÇÃO DE SOLUÇÕES (Onde a sua marca brilha) -->
+    <section id="solucoes" class="py-24 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-brand-blue mb-4">A Engenharia Gutierre</h2>
+                <p class="text-lg text-brand-gray">Projetamos, implementamos e monitoramos infraestruturas robustas para empresas que não podem parar.</p>
             </div>
 
-            <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl transition-all group border-t-4 border-t-blue-900">
-              <Server size={32} className="text-blue-900 mb-6 group-hover:-translate-y-1 transition-transform" />
-              <h3 className="text-xl font-bold text-slate-900 mb-3">Infraestrutura em Nuvem</h3>
-              <p className="text-slate-600 mb-6">Migração estruturada para cloud, garantindo alta disponibilidade e redução de custos com hardware físico.</p>
-              <ul className="space-y-3">
-                <li className="flex items-center text-sm text-slate-700 font-medium"><CheckCircle2 size={16} className="mr-2 text-orange-600" /> Migração Segura</li>
-                <li className="flex items-center text-sm text-slate-700 font-medium"><CheckCircle2 size={16} className="mr-2 text-orange-600" /> Servidores Dedicados</li>
-              </ul>
-            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Serviço 1 -->
+                <div class="bg-brand-light p-8 rounded-2xl border border-slate-200 border-t-4 border-t-brand-blue hover:-translate-y-2 transition-transform duration-300">
+                    <i data-feather="shield" class="w-10 h-10 text-brand-blue mb-6"></i>
+                    <h3 class="text-xl font-bold text-brand-blue mb-3">Cibersegurança Avançada</h3>
+                    <p class="text-brand-gray mb-6 text-sm">Firewalls corporativos, backup imutável e proteção ativa contra invasões 24 horas por dia.</p>
+                    <ul class="space-y-3">
+                        <li class="flex items-center text-sm text-brand-blue font-semibold">
+                            <i data-feather="check-circle" class="w-5 h-5 mr-2 text-brand-orange"></i> Auditoria de Risco
+                        </li>
+                        <li class="flex items-center text-sm text-brand-blue font-semibold">
+                            <i data-feather="check-circle" class="w-5 h-5 mr-2 text-brand-orange"></i> Disaster Recovery
+                        </li>
+                    </ul>
+                </div>
 
-            <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl transition-all group">
-              <Zap size={32} className="text-blue-900 mb-6 group-hover:-translate-y-1 transition-transform" />
-              <h3 className="text-xl font-bold text-slate-900 mb-3">Gestão Proativa de TI</h3>
-              <p className="text-slate-600 mb-6">Terceirização completa. Monitoramos os seus sistemas em tempo real e corrigimos falhas antes que elas afetem a operação.</p>
-              <ul className="space-y-3">
-                <li className="flex items-center text-sm text-slate-700 font-medium"><CheckCircle2 size={16} className="mr-2 text-orange-600" /> Monitoramento NOC 24x7</li>
-                <li className="flex items-center text-sm text-slate-700 font-medium"><CheckCircle2 size={16} className="mr-2 text-orange-600" /> Suporte Níveis 1, 2 e 3</li>
-              </ul>
+                <!-- Serviço 2 -->
+                <div class="bg-brand-light p-8 rounded-2xl border border-slate-200 border-t-4 border-t-brand-orange shadow-lg hover:-translate-y-2 transition-transform duration-300 relative">
+                    <div class="absolute -top-4 right-4 bg-brand-orange text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">Mais Procurado</div>
+                    <i data-feather="cloud" class="w-10 h-10 text-brand-orange mb-6"></i>
+                    <h3 class="text-xl font-bold text-brand-blue mb-3">Infraestrutura em Nuvem</h3>
+                    <p class="text-brand-gray mb-6 text-sm">Migração estruturada para cloud, garantindo alta disponibilidade e redução de custos com hardware.</p>
+                    <ul class="space-y-3">
+                        <li class="flex items-center text-sm text-brand-blue font-semibold">
+                            <i data-feather="check-circle" class="w-5 h-5 mr-2 text-brand-orange"></i> Migração Segura AWS/Azure
+                        </li>
+                        <li class="flex items-center text-sm text-brand-blue font-semibold">
+                            <i data-feather="check-circle" class="w-5 h-5 mr-2 text-brand-orange"></i> Otimização de Custos
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Serviço 3 -->
+                <div class="bg-brand-light p-8 rounded-2xl border border-slate-200 border-t-4 border-t-brand-blue hover:-translate-y-2 transition-transform duration-300">
+                    <i data-feather="activity" class="w-10 h-10 text-brand-blue mb-6"></i>
+                    <h3 class="text-xl font-bold text-brand-blue mb-3">Gestão Proativa (MSP)</h3>
+                    <p class="text-brand-gray mb-6 text-sm">Terceirização completa. Monitoramos os seus sistemas em tempo real e corrigimos falhas antes que afetem a operação.</p>
+                    <ul class="space-y-3">
+                        <li class="flex items-center text-sm text-brand-blue font-semibold">
+                            <i data-feather="check-circle" class="w-5 h-5 mr-2 text-brand-orange"></i> Monitoramento NOC 24x7
+                        </li>
+                        <li class="flex items-center text-sm text-brand-blue font-semibold">
+                            <i data-feather="check-circle" class="w-5 h-5 mr-2 text-brand-orange"></i> Suporte Especializado
+                        </li>
+                    </ul>
+                </div>
             </div>
-          </div>
         </div>
-      </section>
+    </section>
 
-      {/* Call to Action Final */}
-      <section className="py-24 relative overflow-hidden bg-blue-950">
-        <div className="max-w-4xl mx-auto px-4 relative z-10 text-center">
-          <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-6">Pronto para profissionalizar a sua operação?</h2>
-          <p className="text-xl text-blue-200 mb-10 font-light">
-            Deixe os problemas técnicos com a Gutierre e volte a focar no crescimento do seu negócio.
-          </p>
-          <button className="w-full sm:w-auto bg-orange-600 hover:bg-orange-500 text-white px-10 py-5 rounded-xl font-bold text-lg transition-all shadow-xl shadow-orange-600/20 transform hover:-translate-y-1">
-            Falar com um Arquiteto de Soluções
-          </button>
+    <!-- CALL TO ACTION FINAL: Inversão de cores. O Azul Escuro da logo domina aqui para ancorar a página -->
+    <section id="contato" class="py-24 relative overflow-hidden bg-brand-blue">
+        <!-- Efeito de fundo usando a cor laranja da logo -->
+        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#F05A22 2px, transparent 2px); background-size: 30px 30px;"></div>
+        
+        <div class="max-w-4xl mx-auto px-4 relative z-10 text-center">
+            <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6">Pronto para blindar a sua operação?</h2>
+            <p class="text-xl text-slate-300 mb-10 font-light">
+                Pare de remediar problemas técnicos. Agende uma conversa com um arquiteto de soluções da Gutierre e fature sem interrupções.
+            </p>
+            <a href="https://wa.me/SEUNUMERO" target="_blank" class="inline-flex items-center justify-center w-full sm:w-auto bg-brand-orange hover:bg-orange-600 text-white px-10 py-5 rounded-xl font-bold text-lg transition-all shadow-[0_0_30px_rgba(240,90,34,0.4)] transform hover:-translate-y-1">
+                <i data-feather="message-circle" class="w-6 h-6 mr-3"></i>
+                Falar com Especialista Agora
+            </a>
+            <p class="mt-6 text-sm text-slate-400 font-medium">Sem compromisso. Resposta em até 2 horas úteis.</p>
         </div>
-      </section>
+    </section>
 
-      {/* Footer */}
-      <footer className="bg-slate-900 py-12 text-slate-400">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex items-center gap-4 bg-white/5 p-4 rounded-xl">
-            <img 
-              src="https://i.ibb.co/FYbTjYG/Gutierre-fw.png" 
-              alt="Gutierre IT Logo" 
-              className="h-8 object-contain brightness-0 invert opacity-80"
-            />
-          </div>
-          <div className="text-sm">
-            &copy; {new Date().getFullYear()} Gutierre Soluções em Tecnologia IT. Todos os direitos reservados.
-          </div>
+    <!-- FOOTER -->
+    <footer class="bg-[#050e1a] py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <!-- Logo no rodapé (Escala de cinza para não brigar com o topo) -->
+            <div class="flex-shrink-0">
+                <img src="https://i.ibb.co/FYbTjYG/Gutierre-fw.png" alt="Gutierre IT Logo" class="h-10 object-contain opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+            </div>
+            
+            <div class="text-sm text-slate-500 font-medium">
+                &copy; 2024 Gutierre Soluções em Tecnologia IT. Todos os direitos reservados.
+            </div>
+            
+            <div class="flex gap-6 text-sm text-slate-400">
+                <a href="#" class="hover:text-brand-orange transition-colors">Política de Privacidade</a>
+                <a href="#" class="hover:text-brand-orange transition-colors">Termos de Serviço</a>
+            </div>
         </div>
-      </footer>
-    </div>
-  );
-}
+    </footer>
 
+    <!-- Scripts da Página -->
+    <script>
+        // Inicializar Ícones
+        feather.replace();
+
+        // Lógica do Menu Mobile
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Fechar menu ao clicar num link
+        const menuLinks = menu.querySelectorAll('a');
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // Efeito sutil no Navbar ao rolar a página
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 10) {
+                navbar.classList.add('shadow-md');
+                navbar.classList.replace('py-0', 'py-1'); // Exemplo de ajuste
+            } else {
+                navbar.classList.remove('shadow-md');
+                navbar.classList.replace('py-1', 'py-0');
+            }
+        });
+    </script>
+</body>
+</html>
 
