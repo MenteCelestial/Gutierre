@@ -1,0 +1,218 @@
+import React, { useState } from 'react';
+import { Shield, Zap, Server, ChevronRight, Menu, X, CheckCircle2, BarChart, Lock, Phone } from 'lucide-react';
+
+export default function App() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  return (
+    // Transição para um Light Mode sofisticado e corporativo
+    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-orange-500 selection:text-white relative overflow-hidden">
+      
+      {/* Padrão de fundo sutil (Grid tecnológico) para não deixar o branco chapado */}
+      <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none" 
+           style={{ backgroundImage: 'radial-gradient(#0f172a 1px, transparent 1px)', backgroundSize: '24px 24px' }}>
+      </div>
+
+      {/* Navegação - Clean, Fundo Branco com leve sombra */}
+      <nav className="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-24">
+            
+            {/* O SEU LOGOTIPO EM DESTAQUE NATURAL NO FUNDO BRANCO */}
+            <div className="flex-shrink-0 flex items-center">
+              <img 
+                src="https://i.ibb.co/FYbTjYG/Gutierre-fw.png" 
+                alt="Gutierre Soluções em Tecnologia IT" 
+                className="h-16 w-auto object-contain transition-transform hover:scale-105"
+              />
+            </div>
+            
+            {/* Menu Desktop */}
+            <div className="hidden md:flex items-center space-x-8">
+              <a href="#solucoes" className="text-slate-600 hover:text-blue-900 transition-colors text-sm font-semibold">Soluções</a>
+              <a href="#problema" className="text-slate-600 hover:text-blue-900 transition-colors text-sm font-semibold">Desafios</a>
+              <button className="bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-lg font-bold transition-all transform hover:-translate-y-0.5 shadow-lg shadow-orange-600/30">
+                Falar com Especialista
+              </button>
+            </div>
+
+            {/* Botão Menu Mobile */}
+            <div className="md:hidden flex items-center">
+              <button 
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="text-slate-900 hover:text-orange-600 transition-colors"
+              >
+                {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Menu Mobile */}
+        {isMenuOpen && (
+          <div className="md:hidden bg-white border-b border-slate-200 shadow-lg">
+            <div className="px-4 pt-2 pb-6 space-y-2">
+              <a href="#solucoes" className="block px-3 py-3 text-base font-semibold text-slate-700 hover:text-blue-900 hover:bg-slate-50 rounded-md">Soluções Específicas</a>
+              <a href="#problema" className="block px-3 py-3 text-base font-semibold text-slate-700 hover:text-blue-900 hover:bg-slate-50 rounded-md">Desafios Comuns</a>
+              <button className="w-full mt-4 bg-orange-600 text-white px-4 py-3 rounded-md font-bold text-center shadow-md">
+                Falar com Especialista
+              </button>
+            </div>
+          </div>
+        )}
+      </nav>
+
+      {/* Hero Section - Foco na Clareza e Autoridade */}
+      <section className="relative pt-36 pb-20 lg:pt-48 lg:pb-32 z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative text-center flex flex-col items-center">
+          
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-blue-800 text-sm font-bold mb-8 shadow-sm">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-600"></span>
+            </span>
+            Parceiro Estratégico de TI B2B
+          </div>
+          
+          <h1 className="text-4xl md:text-5xl lg:text-7xl font-extrabold tracking-tight mb-6 text-slate-900 leading-[1.1]">
+            A sua TI deve ser um <span className="text-blue-900">motor de lucro</span>,<br className="hidden md:block" /> 
+            não uma fonte de custos ocultos.
+          </h1>
+          
+          <p className="mt-6 text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed font-medium">
+            Eliminamos falhas de sistema, blindamos os seus dados corporativos e garantimos uma operação tecnológica de alta disponibilidade.
+          </p>
+          
+          <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center w-full max-w-md mx-auto sm:max-w-none">
+            <button className="flex items-center justify-center gap-2 bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-lg shadow-orange-600/30 transform hover:-translate-y-1">
+              Agendar Diagnóstico Gratuito
+              <ChevronRight size={20} />
+            </button>
+            <button className="flex items-center justify-center gap-2 bg-white hover:bg-slate-50 border-2 border-slate-200 text-slate-700 px-8 py-4 rounded-xl font-bold text-lg transition-all hover:border-slate-300">
+              Ver Metodologia
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Seção de Dores - Cards Claros e Elegantes */}
+      <section className="py-24 relative z-10 bg-white border-y border-slate-200" id="problema">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-3xl font-extrabold text-slate-900 mb-4">A verdadeira causa da ineficiência tecnológica</h2>
+            <p className="text-lg text-slate-600">Se a sua operação enfrenta estes cenários, a sua infraestrutura atual representa um risco financeiro crítico.</p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-slate-50 p-8 rounded-2xl border border-slate-200 hover:border-blue-300 hover:shadow-xl transition-all duration-300 group">
+              <div className="w-14 h-14 bg-white rounded-xl flex items-center justify-center mb-6 text-red-600 shadow-sm border border-slate-100 group-hover:scale-110 transition-transform">
+                <BarChart size={28} />
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">Lentidão Sistêmica</h3>
+              <p className="text-slate-600 leading-relaxed">
+                Sistemas lentos durante picos de faturamento destroem a produtividade. Qual é o custo real da sua equipe parada durante 1 hora?
+              </p>
+            </div>
+            
+            <div className="bg-slate-50 p-8 rounded-2xl border border-slate-200 hover:border-blue-300 hover:shadow-xl transition-all duration-300 group">
+              <div className="w-14 h-14 bg-white rounded-xl flex items-center justify-center mb-6 text-orange-600 shadow-sm border border-slate-100 group-hover:scale-110 transition-transform">
+                <Lock size={28} />
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">Vulnerabilidade de Dados</h3>
+              <p className="text-slate-600 leading-relaxed">
+                Ataques de Ransomware atingem PMEs diariamente. A ausência de políticas de segurança estruturadas é a porta de entrada mais fácil.
+              </p>
+            </div>
+            
+            <div className="bg-slate-50 p-8 rounded-2xl border border-slate-200 hover:border-blue-300 hover:shadow-xl transition-all duration-300 group">
+              <div className="w-14 h-14 bg-white rounded-xl flex items-center justify-center mb-6 text-blue-600 shadow-sm border border-slate-100 group-hover:scale-110 transition-transform">
+                <Phone size={28} />
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">Suporte Reativo</h3>
+              <p className="text-slate-600 leading-relaxed">
+                Contatar a TI apenas quando algo quebra gera stress contínuo e impede o planejamento estratégico de crescimento da sua empresa.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Seção de Soluções */}
+      <section className="py-24 relative z-10" id="solucoes">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-16">
+            <div className="max-w-2xl">
+              <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">A Engenharia Gutierre</h2>
+              <p className="text-slate-600 text-lg">
+                Projetamos, implementamos e monitoramos infraestruturas robustas para empresas que não podem parar.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl transition-all group">
+              <Shield size={32} className="text-blue-900 mb-6 group-hover:-translate-y-1 transition-transform" />
+              <h3 className="text-xl font-bold text-slate-900 mb-3">Cibersegurança Avançada</h3>
+              <p className="text-slate-600 mb-6">Firewalls corporativos, backup imutável e proteção ativa contra invasões 24/7.</p>
+              <ul className="space-y-3">
+                <li className="flex items-center text-sm text-slate-700 font-medium"><CheckCircle2 size={16} className="mr-2 text-orange-600" /> Auditoria de Risco</li>
+                <li className="flex items-center text-sm text-slate-700 font-medium"><CheckCircle2 size={16} className="mr-2 text-orange-600" /> Disaster Recovery</li>
+              </ul>
+            </div>
+
+            <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl transition-all group border-t-4 border-t-blue-900">
+              <Server size={32} className="text-blue-900 mb-6 group-hover:-translate-y-1 transition-transform" />
+              <h3 className="text-xl font-bold text-slate-900 mb-3">Infraestrutura em Nuvem</h3>
+              <p className="text-slate-600 mb-6">Migração estruturada para cloud, garantindo alta disponibilidade e redução de custos com hardware físico.</p>
+              <ul className="space-y-3">
+                <li className="flex items-center text-sm text-slate-700 font-medium"><CheckCircle2 size={16} className="mr-2 text-orange-600" /> Migração Segura</li>
+                <li className="flex items-center text-sm text-slate-700 font-medium"><CheckCircle2 size={16} className="mr-2 text-orange-600" /> Servidores Dedicados</li>
+              </ul>
+            </div>
+
+            <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl transition-all group">
+              <Zap size={32} className="text-blue-900 mb-6 group-hover:-translate-y-1 transition-transform" />
+              <h3 className="text-xl font-bold text-slate-900 mb-3">Gestão Proativa de TI</h3>
+              <p className="text-slate-600 mb-6">Terceirização completa. Monitoramos os seus sistemas em tempo real e corrigimos falhas antes que elas afetem a operação.</p>
+              <ul className="space-y-3">
+                <li className="flex items-center text-sm text-slate-700 font-medium"><CheckCircle2 size={16} className="mr-2 text-orange-600" /> Monitoramento NOC 24x7</li>
+                <li className="flex items-center text-sm text-slate-700 font-medium"><CheckCircle2 size={16} className="mr-2 text-orange-600" /> Suporte Níveis 1, 2 e 3</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Call to Action Final */}
+      <section className="py-24 relative overflow-hidden bg-blue-950">
+        <div className="max-w-4xl mx-auto px-4 relative z-10 text-center">
+          <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-6">Pronto para profissionalizar a sua operação?</h2>
+          <p className="text-xl text-blue-200 mb-10 font-light">
+            Deixe os problemas técnicos com a Gutierre e volte a focar no crescimento do seu negócio.
+          </p>
+          <button className="w-full sm:w-auto bg-orange-600 hover:bg-orange-500 text-white px-10 py-5 rounded-xl font-bold text-lg transition-all shadow-xl shadow-orange-600/20 transform hover:-translate-y-1">
+            Falar com um Arquiteto de Soluções
+          </button>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-slate-900 py-12 text-slate-400">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="flex items-center gap-4 bg-white/5 p-4 rounded-xl">
+            <img 
+              src="https://i.ibb.co/FYbTjYG/Gutierre-fw.png" 
+              alt="Gutierre IT Logo" 
+              className="h-8 object-contain brightness-0 invert opacity-80"
+            />
+          </div>
+          <div className="text-sm">
+            &copy; {new Date().getFullYear()} Gutierre Soluções em Tecnologia IT. Todos os direitos reservados.
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+
